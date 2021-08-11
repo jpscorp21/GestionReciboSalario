@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/10/2021 17:23:01" ReportInfo.Modified="08/11/2021 11:37:01" ReportInfo.CreatorVersion="2020.3.0.0">
+  <ScriptText>using System;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <PostgresDataConnection Name="Connection" ConnectionString="rijcmlqx1T0cxaam7moPnKfk8dkZ//UtlLHjTy0OMpmCRUR0U+/r8szWvQEqyp/uoDrmMfYKebvvxhxeYG8KXKkUbzy70TI0yu6DPln0qkGwcoM0tn4SHk+PEfPXP1HFKTANJOCTcUc4sQqSo/5RybEnyKQLOvQOyUwLbqjGXk84boKRgtSefWLQib/eP3JVPMJrJsHFV0rXZoanEABO7l+4AjRPFvv2QxUv3OxMTnuyYtj3q7xD7hLHfcHkwZmgj3xd8380HFeBL+OcWZpllUhsyVCIQ==">
+      <TableDataSource Name="Table" Alias="recibo" DataType="System.Int32" Enabled="true" SelectCommand="select&#13;&#10;	*&#13;&#10;from&#13;&#10;	t_recibo_salario as rec&#13;&#10;	inner join t_empleado as emp&#13;&#10;	on rec.empleado_id = emp.id&#13;&#10;where&#13;&#10;	rec.id = @param">
+        <Column Name="id" DataType="System.Int32"/>
+        <Column Name="empleado_id" DataType="System.Int32"/>
+        <Column Name="gerente_id" DataType="System.Int32"/>
+        <Column Name="monto_salario" DataType="System.Double"/>
+        <Column Name="monto_ips" DataType="System.Double"/>
+        <Column Name="fecha" DataType="System.DateTime"/>
+        <Column Name="bonificacion_familiar" DataType="System.Double"/>
+        <Column Name="id1" DataType="System.Int32"/>
+        <Column Name="nombre_empleado" DataType="System.String"/>
+        <Column Name="usuario" DataType="System.String"/>
+        <Column Name="password" DataType="System.String"/>
+        <Column Name="rol" DataType="System.Int32"/>
+        <CommandParameter Name="param" DataType="9" Expression="[param]" DefaultValue="1"/>
+      </TableDataSource>
+    </PostgresDataConnection>
+    <Parameter Name="param" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="179.55">
+      <TextObject Name="Text1" Left="47.25" Top="18.9" Width="415.8" Height="18.9" Text="MINISTERIO DE TRABAJO, EMPLEO Y SEGURIDAD SOCIAL" Font="Times New Roman, 9.75pt, style=Bold"/>
+      <TextObject Name="Text2" Left="207.9" Top="37.8" Width="189" Height="18.9" Text="LIQUIDACIÓN DE SALARIO" Font="Times New Roman, 9.75pt, style=Bold"/>
+      <TextObject Name="Text3" Left="198.45" Top="56.7" Width="189" Height="18.9" Text="(Art.235 del Cód. del Trabajo)" Font="Times New Roman, 9.75pt, style=Bold"/>
+      <TextObject Name="Text4" Left="434.7" Top="37.8" Width="141.75" Height="18.9" Text="Nro. Patronal M.J.T.: " Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text5" Left="434.7" Top="56.7" Width="141.75" Height="18.9" Text="Nro. Patronal I.P.S.:" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text6" Left="434.7" Top="75.6" Width="141.75" Height="18.9" Text="Periodo de Pago:" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text7" Left="434.7" Top="94.5" Width="141.75" Height="18.9" Text="Salario Mensual: " Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text8" Left="434.7" Top="113.4" Width="151.2" Height="18.9" Text="Horas extras diurnas:              " Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text9" Left="9.45" Top="132.3" Width="434.7" Height="18.9" Text="Nombre del empleado: [recibo.nombre_empleado]&#13;&#10;" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text10" Left="9.45" Top="141.75" Width="699.3" Height="18.9" Border.Lines="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text11" Left="444.15" Top="160.65" Width="94.5" Height="18.9" Text="Haberes" Font="Arial, 10pt"/>
+      <TextObject Name="Text82" Left="604.8" Top="37.8" Width="103.95" Height="18.9" Text="80.535" HorzAlign="Right" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text83" Left="604.8" Top="56.7" Width="103.95" Height="18.9" Text="0558-82-00375" HorzAlign="Right" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text84" Left="604.8" Top="75.6" Width="103.95" Height="18.9" Text="      jul/21" HorzAlign="Right" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text85" Left="604.8" Top="94.5" Width="103.95" Height="18.9" Text="[FormatNumber([recibo.monto_salario], 0)]" HorzAlign="Right" Font="Arial, 9.75pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="183.55" Width="718.2" Height="160.65">
+      <TextObject Name="Text12" Left="9.45" Width="699.3" Height="18.9" Border.Lines="All" Fill.Color="LightGray" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Left="9.45" Width="94.5" Height="18.9" Text="Concepto&#13;&#10;" Font="Arial, 10pt"/>
+      <TextObject Name="Text14" Left="217.35" Width="94.5" Height="18.9" Text="Unidades" Font="Arial, 10pt"/>
+      <TextObject Name="Text15" Left="387.45" Width="94.5" Height="18.9" Text="Deducibles" Font="Arial, 10pt"/>
+      <TextObject Name="Text16" Left="567" Width="94.5" Height="18.9" Text="Deducciones" Font="Arial, 10pt"/>
+      <TextObject Name="Text17" Left="9.45" Top="18.9" Width="94.5" Height="18.9" Text="SYJ" Font="Arial, 10pt"/>
+      <TextObject Name="Text18" Left="9.45" Top="37.8" Width="94.5" Height="18.9" Text="HEX" Font="Arial, 10pt"/>
+      <TextObject Name="Text19" Left="9.45" Top="56.7" Width="94.5" Height="18.9" Text="COM" Font="Arial, 10pt"/>
+      <TextObject Name="Text20" Left="9.45" Top="75.6" Width="94.5" Height="18.9" Text="OTR" Font="Arial, 10pt"/>
+      <TextObject Name="Text21" Left="9.45" Top="94.5" Width="94.5" Height="18.9" Text="VAC" Font="Arial, 10pt"/>
+      <TextObject Name="Text22" Left="9.45" Top="113.4" Width="94.5" Height="18.9" Text="IND" Font="Arial, 10pt"/>
+      <TextObject Name="Text23" Left="9.45" Top="132.3" Width="94.5" Height="18.9" Text="PREA" Font="Arial, 10pt"/>
+      <TextObject Name="Text24" Left="103.95" Top="18.9" Width="132.3" Height="18.9" Text="Sueldos y Jornales" Font="Arial, 10pt"/>
+      <TextObject Name="Text25" Left="103.95" Top="37.8" Width="132.3" Height="18.9" Text="Horas Extras" Font="Arial, 10pt"/>
+      <TextObject Name="Text26" Left="103.95" Top="56.7" Width="132.3" Height="18.9" Text="Comisiones" Font="Arial, 10pt"/>
+      <TextObject Name="Text27" Left="103.95" Top="75.6" Width="132.3" Height="18.9" Text="Otros Ingresos" Font="Arial, 10pt"/>
+      <TextObject Name="Text28" Left="103.95" Top="94.5" Width="132.3" Height="18.9" Text="Vacaciones" Font="Arial, 10pt"/>
+      <TextObject Name="Text29" Left="103.95" Top="113.4" Width="132.3" Height="18.9" Text="Indemnización" Font="Arial, 10pt"/>
+      <TextObject Name="Text30" Left="103.95" Top="132.3" Width="132.3" Height="18.9" Text="Pre-Aviso" Font="Arial, 10pt"/>
+      <TextObject Name="Text31" Left="255.15" Top="18.9" Width="85.05" Height="18.9" Text="30 días" Font="Arial, 10pt"/>
+      <TextObject Name="Text32" Left="255.15" Top="37.8" Width="85.05" Height="18.9" Text="0 hs." Font="Arial, 10pt"/>
+      <TextObject Name="Text33" Left="255.15" Top="56.7" Width="85.05" Height="18.9" Text="0" Font="Arial, 10pt"/>
+      <TextObject Name="Text34" Left="255.15" Top="75.6" Width="85.05" Height="18.9" Text="0" Font="Arial, 10pt"/>
+      <TextObject Name="Text35" Left="255.15" Top="94.5" Width="85.05" Height="18.9" Text="0 días" Font="Arial, 10pt"/>
+      <TextObject Name="Text36" Left="255.15" Top="113.4" Width="85.05" Height="18.9" Text="0 días" Font="Arial, 10pt"/>
+      <TextObject Name="Text37" Left="255.15" Top="132.3" Width="85.05" Height="18.9" Text="0 días" Font="Arial, 10pt"/>
+      <TextObject Name="Text38" Left="378" Top="18.9" Width="85.05" Height="18.9" Text="[FormatNumber([recibo.monto_salario], 0)]" Font="Arial, 10pt"/>
+      <TextObject Name="Text39" Left="359.1" Top="37.8" Width="85.05" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text40" Left="359.1" Top="56.7" Width="85.05" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text41" Left="359.1" Top="75.6" Width="85.05" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text42" Left="359.1" Top="94.5" Width="85.05" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text43" Left="359.1" Top="113.4" Width="85.05" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text44" Left="359.1" Top="132.3" Width="85.05" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="348.2" Width="718.2" Height="179.55">
+      <TextObject Name="Text45" Left="9.45" Width="699.3" Height="18.9" Border.Lines="All" Fill.Color="LightGray" Font="Arial, 10pt"/>
+      <TextObject Name="Text46" Left="9.45" Width="264.6" Height="18.9" Text="TOTAL HABERES DEVENGADO IPS&#13;&#10;" Font="Arial, 10pt"/>
+      <TextObject Name="Text47" Left="576.45" Width="132.3" Height="18.9" Border.Lines="Left" Text="[FormatNumber([recibo.monto_salario], 0)]" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text48" Left="9.45" Top="18.9" Width="226.8" Height="18.9" Text="IPS APORTE OBRERO  9%" Font="Arial, 10pt"/>
+      <TextObject Name="Text49" Left="349.65" Top="18.9" Width="94.5" Height="18.9" Text="2.093.000" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text50" Left="491.4" Top="18.9" Width="85.05" Height="18.9" Text="207.000" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text51" Left="642.6" Top="18.9" Width="85.05" Height="18.9" Text="2.093.000" Font="Arial, 10pt"/>
+      <TextObject Name="Text52" Left="9.45" Top="37.8" Width="699.3" Height="18.9" Border.Lines="All" Fill.Color="LightGray" Font="Arial, 10pt"/>
+      <TextObject Name="Text53" Left="9.45" Top="37.8" Width="264.6" Height="18.9" Text="OTROS HABERES&#13;&#10;" Font="Arial, 10pt"/>
+      <TextObject Name="Text54" Left="576.45" Top="37.8" Width="132.3" Height="18.9" Border.Lines="Left" Text="115.000" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text55" Left="9.45" Top="56.7" Width="94.5" Height="18.9" Text="BFA" Font="Arial, 10pt"/>
+      <TextObject Name="Text56" Left="9.45" Top="75.6" Width="94.5" Height="18.9" Text="AGU" Font="Arial, 10pt"/>
+      <TextObject Name="Text57" Left="103.95" Top="56.7" Width="132.3" Height="18.9" Text="Bonif. Familiar" Font="Arial, 10pt"/>
+      <TextObject Name="Text58" Left="103.95" Top="75.6" Width="132.3" Height="18.9" Text="Aguinaldos" Font="Arial, 10pt"/>
+      <TextObject Name="Text59" Left="103.95" Top="94.5" Width="132.3" Height="18.9" Text="Redondeo" Font="Arial, 10pt"/>
+      <TextObject Name="Text60" Left="378" Top="56.7" Width="66.15" Height="18.9" Text="115.000" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text61" Left="378" Top="75.6" Width="66.15" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text62" Left="378" Top="94.5" Width="66.15" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text63" Left="9.45" Top="113.4" Width="699.3" Height="18.9" Border.Lines="All" Fill.Color="LightGray" Font="Arial, 10pt"/>
+      <TextObject Name="Text64" Left="9.45" Top="113.4" Width="264.6" Height="18.9" Text="OTROS DESCUENTOS" Font="Arial, 10pt"/>
+      <TextObject Name="Text65" Left="576.45" Top="113.4" Width="132.3" Height="18.9" Border.Lines="Left" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text66" Left="9.45" Top="132.3" Width="94.5" Height="18.9" Text="ODE" Font="Arial, 10pt"/>
+      <TextObject Name="Text67" Left="103.95" Top="132.3" Width="132.3" Height="18.9" Text="Otros Descuentos" Font="Arial, 10pt"/>
+      <TextObject Name="Text68" Left="378" Top="132.3" Width="66.15" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text69" Left="9.45" Top="132.3" Width="699.3" Height="18.9" Border.Lines="Bottom" Font="Arial, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="531.75" Width="718.2" Height="122.85">
+      <TextObject Name="Text70" Left="9.45" Width="368.55" Height="28.35" Text="Recibi conforme de la empresa, original e importe neto de la presente liquidación" Font="Arial, 10pt"/>
+      <TextObject Name="Text71" Left="368.55" Width="75.6" Height="18.9" Text="2.208.000" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text72" Left="463.05" Width="66.15" Height="18.9" Text="0" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text73" Left="368.55" Top="18.9" Width="245.7" Height="18.9" Border.Lines="All" Text="Saldo a cobrar GS." Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text74" Left="519.75" Top="18.9" Width="94.5" Height="18.9" Text="2.208.000" HorzAlign="Right" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text75" Left="9.45" Top="56.7" Width="226.8" Height="18.9" Border.Lines="Bottom" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text76" Left="264.6" Top="56.7" Width="189" Height="18.9" Border.Lines="Bottom" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text77" Left="481.95" Top="56.7" Width="226.8" Height="18.9" Border.Lines="Bottom" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text78" Left="47.25" Top="75.6" Width="141.75" Height="18.9" Text="EMPLEADOR" HorzAlign="Center" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text79" Left="283.5" Top="75.6" Width="141.75" Height="18.9" Text="EMPLEADO" HorzAlign="Center" Font="Arial, 9.75pt, style=Bold"/>
+      <TextObject Name="Text80" Left="529.2" Top="75.6" Width="141.75" Height="18.9" Text="FECHA" HorzAlign="Center" Font="Arial, 9.75pt"/>
+      <TextObject Name="Text81" Left="529.2" Top="56.7" Width="141.75" Height="18.9" Text="30/07/2021" HorzAlign="Center" Font="Arial, 9.75pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

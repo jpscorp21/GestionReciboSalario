@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="ngForm">
+    <ion-grid>
+      <ion-row style="margin: auto 0;">
+        <ion-col size="12" sizeSm="10" sizeMd="8" sizeLg="6"  style="margin: auto;">
+          <ion-row>
+            <ion-col> 
+              <ion-item>
+                <ion-label position="stacked">Usuario</ion-label>
+                <ion-input formControlName="usuario"></ion-input>
+              </ion-item>    
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </ion-item>    
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="iniciarSesion()" [disabled]="!ngForm.valid" expand="block">Entrar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using GestionReciboSalario.API.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using FastReport;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using FastReport.Export.PdfSimple;
 
 namespace GestionReciboSalario.API.Controllers
 {
@@ -13,10 +17,12 @@ namespace GestionReciboSalario.API.Controllers
     {
 
         private readonly ApplicationDbContext context;
+        private readonly IConfiguration configuration;
 
-        public ReciboSalariosController(ApplicationDbContext context)
+        public ReciboSalariosController(ApplicationDbContext context, IConfiguration configuration)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.configuration = configuration;
         }
 
         [HttpGet("", Name = "Obtener todos los recibos")]
@@ -83,6 +89,36 @@ namespace GestionReciboSalario.API.Controllers
             {
                 return BadRequest(exception);
                 // throw new Exception(exception.Message);
+            }
+
+        }
+        [HttpGet("reporte/{id}", Name = "Crear reporte del recibo de salario")]
+        public ActionResult GetReporteSalario(int id)
+        {
+            try
+            {
+                Report report = new Report();
+                report.Report.Load("recibosalario.frx");
+                report.Report.Dictionary.Connections[0].ConnectionString = configuration.GetConnectionString("DefaultConnection");
+
+                report.Report.SetParameterValue("param", id);
+                report.Prepare();
+
+                Response.ContentType = "application/pdf";
+                Response.Headers.Add("Content-disposition", "inline");
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    PDFSimpleExport pdfExport = new PDFSimpleExport() { OpenAfterExport = true };
+                    pdfExport.Export(report.Report, ms);
+
+                    return File(ms.ToArray(), "application/pdf");
+                };
+            }
+            catch (System.Exception exception)
+            {
+                System.Console.WriteLine(exception);
+                throw new Exception(exception.Message);
             }
 
         }

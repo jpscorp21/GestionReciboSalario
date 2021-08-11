@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="5.0.2" />
+    <PackageReference Include="FastReport.OpenSource" Version="2020.4.9" />
+    <PackageReference Include="FastReport.OpenSource.Data.Postgres" Version="2020.4.9" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.4.9" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2020.4.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8">

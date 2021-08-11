@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GestionReciboSalario.API.Contexts;
 using Microsoft.EntityFrameworkCore;
+using FastReport.Data;
 
 namespace GestionReciboSalario.API
 {
@@ -22,6 +23,7 @@ namespace GestionReciboSalario.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            FastReport.Utils.RegisteredObjects.AddConnection(typeof(PostgresDataConnection));
         }
 
         public IConfiguration Configuration { get; }
@@ -39,7 +41,7 @@ namespace GestionReciboSalario.API
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
-                .UseSnakeCaseNamingConvention()); 
+                .UseSnakeCaseNamingConvention());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +66,8 @@ namespace GestionReciboSalario.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseFastReport();
 
             app.UseEndpoints(endpoints =>
             {
