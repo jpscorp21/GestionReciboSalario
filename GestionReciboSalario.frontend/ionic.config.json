@@ -1,0 +1,7 @@
+{
+  "name": "gestion-recibo-salario-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

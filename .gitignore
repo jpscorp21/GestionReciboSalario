@@ -1,0 +1,11 @@
+**/node_modules/**
+.DS_Store
+**/.workspace.xml
+**/bin
+/CooperativaEstrella.Api/appsettings.json
+**/Logs
+**/obj
+.vs
+.idea
+
+appsettings.json
