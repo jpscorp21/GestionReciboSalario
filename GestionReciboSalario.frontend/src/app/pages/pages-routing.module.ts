@@ -4,10 +4,14 @@ import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
   {
-    path: '',
-    
+    path: '',        
     component: PagesComponent,
     children: [
+        {
+          path: '',
+          redirectTo: 'recibo-salarios',
+          pathMatch: 'full'
+        },
         {
             path: 'recibo-salarios',
             loadChildren: () => import('./recibo-salarios/recibo-salarios.module').then( m => m.ReciboSalariosPageModule)

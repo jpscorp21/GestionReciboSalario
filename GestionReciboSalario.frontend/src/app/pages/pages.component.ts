@@ -7,9 +7,9 @@ import { PerfilService } from '../services/perfil.service';
 })
 export class PagesComponent {
   public appPages = [
-    { title: 'Recibo salarios', url: '/pages/recibo-salarios', icon: 'document' },
-    { title: 'Empleados', url: '/pages/empleados', icon: 'person' },    
-    { title: 'Salir', url: '/login', icon: 'exit' },    
+    { title: 'Recibo de salarios', url: '/pages/recibo-salarios', icon: 'document', rol: [1, 2] },
+    { title: 'Empleados', url: '/pages/empleados', icon: 'person', rol: [1] },    
+    { title: 'Salir', url: '/login', icon: 'exit', rol: [1, 2] },    
   ];  
   constructor(
       public perfil: PerfilService

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest } from 'rxjs';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { ReciboSalariosService } from 'src/app/services/recibo-salarios.service';
 import { environment } from 'src/environments/environment';
@@ -28,7 +27,6 @@ export class ReciboSalariosPage implements OnInit {
     elem.href = `${this.url}/recibosalarios/reporte/` + id;
     elem.target = "_blank";
     elem.click();
-
   }
 
 }

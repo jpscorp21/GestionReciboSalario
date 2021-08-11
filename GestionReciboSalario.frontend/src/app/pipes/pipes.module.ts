@@ -1,10 +1,12 @@
 
 import { ComaPipe } from './coma.pipe';
 import { NgModule } from '@angular/core';
+import { RolPipe } from './rol.pipe';
 
 
 const pipes = [
-    ComaPipe,    
+    ComaPipe,
+    RolPipe    
 ];
 
 @NgModule({

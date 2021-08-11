@@ -30,7 +30,7 @@ namespace GestionReciboSalario.API.Controllers
         {
             try
             {
-                var recibos = await context.ReciboSalarios.ToListAsync();
+                var recibos = await context.ReciboSalarios.Include(x => x.Empleado).ToListAsync();
                 return Ok(recibos);
             }
             catch (Exception ex)
@@ -45,7 +45,7 @@ namespace GestionReciboSalario.API.Controllers
         {
             try
             {
-                var recibos = await context.ReciboSalarios.Where(x => x.EmpleadoId == id).ToListAsync();
+                var recibos = await context.ReciboSalarios.Include(x => x.Empleado).Where(x => x.EmpleadoId == id).ToListAsync();
                 return Ok(recibos);
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace GestionReciboSalario.API.Controllers
         {
             try
             {
-                var recibo = await context.ReciboSalarios.Where(x => x.GerenteId == id).ToListAsync();
+                var recibo = await context.ReciboSalarios.Include(x => x.Empleado).Where(x => x.GerenteId == id).ToListAsync();
                 return Ok(recibo);
             }
             catch (Exception ex)

@@ -1,6 +1,7 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar sesión</ion-title>
+  <ion-toolbar>        
+    <ion-img style="width: 48px; height: 48px; margin: 8px !important;" src="/assets/logo.jpg"></ion-img>
+    <ion-title mode="ios">Gestión de recibo de salarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,10 +11,15 @@
       <ion-row style="margin: auto 0;">
         <ion-col size="12" sizeSm="10" sizeMd="8" sizeLg="6"  style="margin: auto;">
           <ion-row>
+            <ion-col class="ion-text-center"> 
+              <h3>Iniciar sesión</h3>   
+            </ion-col>
+          </ion-row>
+          <ion-row>
             <ion-col> 
               <ion-item>
                 <ion-label position="stacked">Usuario</ion-label>
-                <ion-input formControlName="usuario"></ion-input>
+                <ion-input formControlName="usuario" autofocus></ion-input>
               </ion-item>    
             </ion-col>
           </ion-row>
@@ -21,7 +27,7 @@
             <ion-col>
               <ion-item>
                 <ion-label position="stacked">Contraseña</ion-label>
-                <ion-input type="password" formControlName="password"></ion-input>
+                <ion-input type="password" formControlName="password" (keydown.enter)="iniciarSesion()"></ion-input>
               </ion-item>    
             </ion-col>
           </ion-row>

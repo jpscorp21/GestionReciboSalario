@@ -10,6 +10,7 @@
 <ion-content class="ion-padding">
   <ion-list>
     <ion-item *ngFor="let emp of empleados$ | async">
+      <ion-icon slot="start" name="person" color="black"></ion-icon>
       <ion-label>{{emp.nombreEmpleado}}</ion-label>
     </ion-item>
   </ion-list>
