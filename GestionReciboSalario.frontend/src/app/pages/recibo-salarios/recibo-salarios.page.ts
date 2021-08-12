@@ -22,11 +22,40 @@ export class ReciboSalariosPage implements OnInit {
   ngOnInit() {
   }
 
-  imprimir(id: number) {
+  imprimir(recibo) { 
+    
+    
+
+    if (recibo.firmaEmpleado && recibo.firmaGerente) {
+      const elem = document.createElement("a");
+      elem.href = `${this.url}/empleados/firmaempleado/` + recibo.empleadoId + '/' + recibo.id;
+      elem.target = "_blank";
+      elem.click();
+    }
+
+    if (recibo.firmaEmpleado || recibo.firmaGerente) {
+      this.firmaEmpleado(recibo);
+    }
+
     const elem = document.createElement("a");
-    elem.href = `${this.url}/recibosalarios/reporte/` + id;
+    elem.href = `${this.url}/recibosalarios/reporte/` + recibo.id;
     elem.target = "_blank";
     elem.click();
+  }
+
+  firmaEmpleado(recibo: any) {
+    console.log(recibo);
+    if (this.perfil.perfil.rol == 1) {
+      const elem = document.createElement("a");
+      elem.href = `${this.url}/empleados/firmagerente/` + recibo.gerenteId + '/' + recibo.id;
+      elem.target = "_blank";
+      elem.click();
+    } else {
+      const elem = document.createElement("a");
+      elem.href = `${this.url}/empleados/firmaempleado/` + recibo.empleadoId + '/' + recibo.id;
+      elem.target = "_blank";
+      elem.click();
+    }
   }
 
 }

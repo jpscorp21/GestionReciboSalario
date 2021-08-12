@@ -9,20 +9,26 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let recibo of recibos$ | async">
+    <ion-item *ngFor="let recibo of recibos$ | async | firma">
       <ion-label><b>{{recibo.empleado.nombreEmpleado}}</b></ion-label>
       <ion-label>{{recibo.fecha | date}}</ion-label>
       <ion-label slot="end" class="ion-text-right">
         <b>Gs. {{recibo.montoSalario | coma}}</b>
       </ion-label>
-      <ion-buttons slot="end">
-      <ion-button fill="text" shape="round" (click)="imprimir(recibo.id)">
-        <ion-icon slot="icon-only" icon="print"></ion-icon>
-      </ion-button>
-      <ion-button fill="text" shape="round" (click)="imprimir(recibo.id)">
-        <ion-icon slot="icon-only" icon="pencil"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+      <ion-buttons slot="end" *ngIf="perfil.perfil$ | async as persona">
+        <ion-button fill="text" shape="round" (click)="imprimir(recibo)">
+          <ion-icon slot="icon-only" icon="print"></ion-icon>
+        </ion-button>
+        <ion-button fill="text" shape="round" (click)="firmaEmpleado(recibo)">
+          <ion-icon slot="icon-only" icon="pencil"></ion-icon>
+        </ion-button>        
+        <ion-button fill="text" shape="round" (click)="firmaEmpleado(recibo)" *ngIf="persona.rol === 1 && recibo.firmaGerente ">
+          <ion-icon slot="icon-only" [icon]="recibo.firmaEmpleado ? 'checkmark-done-outline' : 'checkmark-outline'" color="primary"></ion-icon>
+        </ion-button>
+        <ion-button fill="text" shape="round" (click)="firmaEmpleado(recibo)" *ngIf="persona.rol === 2 && recibo.firmaEmpleado ">
+          <ion-icon slot="icon-only" [icon]="'checkmark-outline'" color="primary"></ion-icon>
+        </ion-button>
+      </ion-buttons>
       
     </ion-item>
   </ion-list>

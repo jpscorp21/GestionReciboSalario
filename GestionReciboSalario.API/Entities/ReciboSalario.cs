@@ -17,5 +17,8 @@ namespace GestionReciboSalario.API.Entities
         public double MontoIPS { get; set; }
         public DateTimeOffset Fecha { get; set; }
         public double BonificacionFamiliar { get; set; }
+        public bool FirmaEmpleado { get; set; } = false;
+        public bool FirmaGerente { get; set; } = false;
+        public string FirmaUrl {get; set;}
     }
 }

@@ -2,11 +2,13 @@
 import { ComaPipe } from './coma.pipe';
 import { NgModule } from '@angular/core';
 import { RolPipe } from './rol.pipe';
+import { FirmaPipe } from './firma.pipe';
 
 
 const pipes = [
     ComaPipe,
-    RolPipe    
+    RolPipe,
+    FirmaPipe    
 ];
 
 @NgModule({

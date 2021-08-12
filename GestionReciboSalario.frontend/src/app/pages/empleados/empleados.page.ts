@@ -15,6 +15,7 @@ export class EmpleadosPage implements OnInit {
   empleados$ = this.empleados.getAll();
 
   ngOnInit() {
+    // this.empleados.getJSON();
   }
 
 }

@@ -32,6 +32,7 @@ namespace GestionReciboSalario.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddHttpClient();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
